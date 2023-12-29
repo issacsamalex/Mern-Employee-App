@@ -14,7 +14,6 @@ import useAuth from "../hooks/useAuth";
 import axios from '../api/axios';
 import { axiosPrivate } from "../api/axios";
 
-const LOGIN_URL = '/auth';
 
 
 const Public = () => {
@@ -39,7 +38,7 @@ const Public = () => {
 
   const handleSubmit = async () => {
     try {
-        const response = await axios.post(LOGIN_URL, {username, password})
+        const response = await axios.post('http://localhost:3001/auth', {username, password})
             if(response){
               const accessToken = response?.data?.token
               const refreshToken = response?.data?.refreshToken
