@@ -41,7 +41,10 @@ const Public = () => {
         const response = await axios.post(LOGIN_URL,
             JSON.stringify({username, password}),
             {
-                headers: {Accept: 'application/json', },
+                headers: {
+                  Accept: 'application/json',
+                  'Access-Control-Allow-Origin': 'https://tough-garb-bear.cyclic.app'
+                },
                 withCredentials: true
             }
             );
