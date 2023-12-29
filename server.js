@@ -18,7 +18,13 @@ const refreshRoutes = require('./routes/api/refresh');
 const PORT = process.env.PORT;
 
 // Connect to MongoDB
-connectDB();
+const newConnectDB = async () => {
+    try {
+        await connectDB();
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 
 // Cross Origin Resource Sharing
@@ -56,12 +62,10 @@ app.get('*', function (_, res){
 })
 
 
-
-
-mongoose.connection.once('open', () => {
-    console.log('Connected to MongoDB');
+newConnectDB().then(()=> {
     app.listen(PORT, ()=> console.log(`Server is running on ${PORT}`));
-});
+})
+
 
 
 
