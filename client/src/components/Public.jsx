@@ -12,6 +12,7 @@ import {
 import React from "react";
 import useAuth from "../hooks/useAuth";
 import axios from '../api/axios';
+import { axiosPrivate } from "../api/axios";
 
 const LOGIN_URL = '/auth';
 
@@ -38,23 +39,22 @@ const Public = () => {
 
   const handleSubmit = async () => {
     try {
-        const response = await axios.post(LOGIN_URL,
-            JSON.stringify({username, password}),
-            {
-                headers: {
-                  Accept: 'application/json',
-                  'Access-Control-Allow-Origin': 'https://tough-garb-bear.cyclic.app'
-                },
-                withCredentials: true
+        const response = await axios.post(LOGIN_URL, {username, password})
+            if(response){
+              const accessToken = response?.data?.token
+              const refreshToken = response?.data?.refreshToken
+              localStorage.setItem('accessToken', accessToken)
+              localStorage.setItem('refreshToken', refreshToken)
+              
+              
+              const roles = response?.data?.user?.roles;
+              setAuth({ username, password, roles, accessToken});
+              setUserName('');
+              setPassword('');
+              navigate('/dash')
             }
-            );
-            console.log(JSON.stringify(response?.data));
-            const accessToken = response?.data?.accessToken;
-            const roles = response?.data?.roles;
-            setAuth({ username, password, roles, accessToken});
-            setUserName('');
-            setPassword('');
-            navigate('/dash')
+            
+            
     } catch (error) {
         if(!error?.response){
             setErrMsg('No Server Response');

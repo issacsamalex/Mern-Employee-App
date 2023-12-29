@@ -1,6 +1,6 @@
 import Button from "@mui/material/Button";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./employeeList.css";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -11,6 +11,13 @@ import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 const EmployeesList = () => {
   const [employees, setEmployees] = useState([]);
   const axiosPrivate = useAxiosPrivate();
+  const navigate = useNavigate();
+
+  useEffect(()=> {
+    if(!localStorage.getItem('accessToken')){
+      navigate('/')
+    }
+  },[])
 
   useEffect(() => {
     const fetchData = async () => {

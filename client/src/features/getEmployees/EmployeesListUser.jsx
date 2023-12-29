@@ -3,12 +3,20 @@ import { useState } from "react";
 import { useEffect } from "react";
 import axios from '../../api/axios';
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import { useNavigate } from "react-router-dom";
 
 const EmployeesListUser = () => {
   const [employees, setEmployees] = useState([]);
   const axiosPrivate = useAxiosPrivate();
+  const navigate = useNavigate();
   
   const EMPLOYEE_URL = '/dash/employees';
+
+  useEffect(()=> {
+    if(!localStorage.getItem('accessToken')){
+      navigate('/')
+    }
+  },[])
 
   useEffect(() => {
     const fetchData = async () => {

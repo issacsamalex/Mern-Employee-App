@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './addEmployee.css'
 import { Grid, TextField, Button, Typography } from "@mui/material";
 import { useForm } from './useForm';
@@ -18,6 +18,12 @@ const AddEmployee = () => {
 
     const navigate = useNavigate();
     const axiosPrivate = useAxiosPrivate();
+
+    useEffect(()=> {
+      if(!localStorage.getItem('accessToken')){
+        navigate('/')
+      }
+    },[])
 
 
     const submitHandler = async () => {

@@ -6,8 +6,5 @@ router.route('/')
     .post(authController.handleLogin)
 
 
-router.route('/logout')
-    .get(authController.logout)
-
 
 module.exports = router;

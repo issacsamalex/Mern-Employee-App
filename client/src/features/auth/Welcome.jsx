@@ -1,8 +1,17 @@
-import { Link } from 'react-router-dom'
-import React from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import React, { useEffect } from 'react'
 import { Button, Typography } from '@mui/material'
 
 const Welcome = () => {
+
+  const navigate = useNavigate()
+
+  useEffect(()=> {
+    if(!localStorage.getItem('accessToken')){
+      navigate('/')
+    }
+  },[])
+
   return (
     <section className='welcome'>
         <Typography variant='h4'>Welcome to Dashboard</Typography>

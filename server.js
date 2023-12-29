@@ -4,13 +4,11 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const cors = require('cors');
-const corsOptions = require('./config/corsOptions')
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 const connectDB = require('./config/dbConnection');
 const employeesRoute = require('./routes/api/employees');
 const authRoute = require('./routes/api/auth');
-const credentials = require('./middleware/credential');
 const refreshRoutes = require('./routes/api/refresh');
 // const userRoutes = require('./routes/api/userRoutes')
 
@@ -22,12 +20,9 @@ const PORT = process.env.PORT;
 // Connect to MongoDB
 connectDB();
 
-// Handle options credentials check - before CORS!
-// and fetch cookies credentials requirement
-app.use(credentials);
 
 // Cross Origin Resource Sharing
-app.use(cors(corsOptions))
+app.use(cors())
 
 // built-in middleware to handle urlencoded form data
 app.use(express.urlencoded({extended: false}));
@@ -39,10 +34,6 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use(bodyParser.json());
-
-// serve static files
-// app.use(express.static(path.join(__dirname, '/build')));
-
 
 
 //Routes
@@ -56,6 +47,7 @@ app.use('/dash/employees', employeesRoute);
 // app.use('/users', userRoutes); // Use only for Developement phase
 
 
+// serve static files
 app.use(express.static(path.join(__dirname, './client/build')));
 app.get('*', function (_, res){
     res.sendFile(path.join(__dirname, './client/build/index.html'), function(error){
