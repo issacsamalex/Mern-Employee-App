@@ -21,14 +21,14 @@ const EmployeesList = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axiosPrivate.get("http://localhost:3001/dash/employees");
+      const response = await axiosPrivate.get("/dash/employees");
       setEmployees(response.data);
     };
     fetchData();
   }, []);
 
   const deleteEmployee = async (employeeId) => {
-    await axiosPrivate.delete(`http://localhost:3001/dash/employees/delete/${employeeId}`)
+    await axiosPrivate.delete(`/dash/employees/delete/${employeeId}`)
     .then((response)=>{
       setEmployees((prevEmployee)=> prevEmployee.filter((user)=> user._id !== employeeId))
       toast.success(response.data.message, {position:'top-right'})

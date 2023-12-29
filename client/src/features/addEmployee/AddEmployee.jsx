@@ -27,7 +27,7 @@ const AddEmployee = () => {
 
 
     const submitHandler = async () => {
-        await axiosPrivate.post('http://localhost:3001/dash/employees', value)
+        await axiosPrivate.post('/dash/employees', value)
         .then((response) => {
             toast.success(response.data.message, {position:"top-right"})
             navigate('/dash/employees')

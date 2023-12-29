@@ -38,7 +38,7 @@ const Public = () => {
 
   const handleSubmit = async () => {
     try {
-        const response = await axios.post('http://localhost:3001/auth', {username, password})
+        const response = await axios.post('/auth', {username, password})
             if(response){
               const accessToken = response?.data?.token
               const refreshToken = response?.data?.refreshToken
