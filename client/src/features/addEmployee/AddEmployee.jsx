@@ -17,6 +17,7 @@ const AddEmployee = () => {
     })
 
     const navigate = useNavigate();
+    
     const axiosPrivate = useAxiosPrivate();
 
     useEffect(()=> {

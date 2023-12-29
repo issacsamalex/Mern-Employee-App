@@ -11,8 +11,8 @@ import {
 } from "@mui/material";
 import React from "react";
 import useAuth from "../hooks/useAuth";
-import axios from '../api/axios';
-import { axiosPrivate } from "../api/axios";
+import axios from 'axios';
+import useAxiosPrivate from '../hooks/useAxiosPrivate';
 
 
 
@@ -23,6 +23,7 @@ const Public = () => {
   const errRef = useRef();
 
   const navigate = useNavigate();
+  const axiosPrivate = useAxiosPrivate();
 
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
@@ -38,7 +39,7 @@ const Public = () => {
 
   const handleSubmit = async () => {
     try {
-        const response = await axios.post('/auth', {username, password})
+        const response = await axiosPrivate.post('/auth', {username, password})
             if(response){
               const accessToken = response?.data?.token
               const refreshToken = response?.data?.refreshToken
