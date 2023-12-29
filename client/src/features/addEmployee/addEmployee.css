@@ -1,0 +1,25 @@
+.outer{
+    margin: 10%;
+    text-align: center;
+    background-color: rgb(210, 242, 247);
+    padding: 20px 50px;
+    border: 2px solid rgb(118, 28, 192);
+    border-radius: 16px;
+    -webkit-box-shadow: -1px 2px 48px -12px rgba(0, 0, 0, 0.503);
+  -moz-box-shadow: -1px 2px 48px -12px rgba(0, 0, 0, 0.75);
+  box-shadow: -1px 2px 48px -12px rgba(0, 0, 0, 0.503);
+}
+.header{
+    padding-top: 10px;
+    padding-bottom: 5px;
+    color: #00463e;
+}
+.header1{
+    padding-bottom: 10px;
+    color: black;
+}
+#ctaprimary{
+    background-color: #6a2f9b;
+    text-decoration: none;
+    color: white;
+}
