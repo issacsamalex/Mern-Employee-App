@@ -4,6 +4,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const cors = require('cors');
+const corsOptions = require('./config/corsOptions')
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 const connectDB = require('./config/dbConnection');
@@ -26,7 +27,7 @@ connectDB();
 app.use(credentials);
 
 // Cross Origin Resource Sharing
-app.use(cors())
+app.use(cors(corsOptions))
 
 // built-in middleware to handle urlencoded form data
 app.use(express.urlencoded({extended: false}));
