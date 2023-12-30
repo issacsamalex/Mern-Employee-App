@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import React from "react";
 import useAuth from "../hooks/useAuth";
-import axios from 'axios';
+import axios from "../api/axios";
 import useAxiosPrivate from '../hooks/useAxiosPrivate';
 
 
@@ -39,7 +39,7 @@ const Public = () => {
 
   const handleSubmit = async () => {
     try {
-        const response = await axiosPrivate.post('/auth', {username, password})
+        const response = await axios.post('/api/v1/auth/login', {username, password})
             if(response){
               const accessToken = response?.data?.token
               const refreshToken = response?.data?.refreshToken

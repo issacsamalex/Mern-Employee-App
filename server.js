@@ -28,7 +28,11 @@ const newConnectDB = async () => {
 
 
 // Cross Origin Resource Sharing
-app.use(cors())
+app.use(cors({
+    origin: ['http://localhost:3000', 'https://crowded-teal-sawfish.cyclic.app'],
+    methods: ['GET','POST','PUT','DELETE'],
+    credentials: true
+}))
 
 // built-in middleware to handle urlencoded form data
 app.use(express.urlencoded({extended: false}));
@@ -43,12 +47,12 @@ app.use(bodyParser.json());
 
 
 //Routes
-app.use('/auth', authRoute);
+app.use('/api/v1/auth', authRoute);
 
-app.use('/refresh', refreshRoutes);
+app.use('/api/v1/refresh', refreshRoutes);
 
 
-app.use('/dash/employees', employeesRoute);
+app.use('/api/v1/dash/employees', employeesRoute);
 
 // app.use('/users', userRoutes); // Use only for Developement phase
 

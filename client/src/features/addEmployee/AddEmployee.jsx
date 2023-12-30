@@ -17,7 +17,7 @@ const AddEmployee = () => {
     })
 
     const navigate = useNavigate();
-    
+
     const axiosPrivate = useAxiosPrivate();
 
     useEffect(()=> {
@@ -28,7 +28,7 @@ const AddEmployee = () => {
 
 
     const submitHandler = async () => {
-        await axiosPrivate.post('/dash/employees', value)
+        await axiosPrivate.post('/api/v1/dash/employees', value)
         .then((response) => {
             toast.success(response.data.message, {position:"top-right"})
             navigate('/dash/employees')

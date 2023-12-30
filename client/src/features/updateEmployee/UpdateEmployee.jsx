@@ -26,14 +26,14 @@ const UpdateEmployee = () => {
     }
 
     useEffect(()=>{
-        axiosPrivate.get(`/dash/employees/update/${id}`)
+        axiosPrivate.get(`/api/v1/dash/employees/update/${id}`)
         .then((response)=>{
             setEmployees(response.data)
         }).catch((error) => console.log(error))
     }, [id, axiosPrivate])
 
     const submitHandler = async () => {
-        await axiosPrivate.put(`/dash/employees/update/${id}`, employees)
+        await axiosPrivate.put(`/api/v1/dash/employees/update/${id}`, employees)
         .then((response) => {
             toast.success(response.data.message, {position:"top-right"})
             navigate('/dash/employees')

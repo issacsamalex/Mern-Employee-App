@@ -10,7 +10,6 @@ const EmployeesListUser = () => {
   const axiosPrivate = useAxiosPrivate();
   const navigate = useNavigate();
   
-  const EMPLOYEE_URL = '/dash/employees';
 
   useEffect(()=> {
     if(!localStorage.getItem('accessToken')){
@@ -20,7 +19,7 @@ const EmployeesListUser = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axiosPrivate.get(EMPLOYEE_URL);
+      const response = await axiosPrivate.get('/api/v1/dash/employees');
       setEmployees(response.data);
     };
     fetchData();
